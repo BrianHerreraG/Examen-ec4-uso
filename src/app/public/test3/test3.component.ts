@@ -1,16 +1,17 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PreguntasService } from 'src/app/shared/Services/preguntas.service';
 import { Router } from '@angular/router';
+import { PreguntasService } from 'src/app/shared/Services/preguntas.service';
 
 @Component({
-  templateUrl: './test4.component.html',
-  styleUrls: ['./test4.component.scss']
+  selector: 'app-test3',
+  templateUrl: './test3.component.html',
+  styleUrls: ['./test3.component.scss']
 })
-export class Test4Component {
-
+export class Test3Component {
   @ViewChild('name') nameKey!: ElementRef;
+
   public questionList: any[] = [];
 
   nameForm = this.fb.group({
@@ -18,9 +19,8 @@ export class Test4Component {
   });
 
   constructor(public questionService: PreguntasService, private fb: FormBuilder, private router: Router) { }
-
   ngOnInit(): void {
-    this.questionService.getQuestionFire4c().subscribe(res => {
+    this.questionService.getQuestionFire3c().subscribe(res => {
       this.questionList = res;
       if (this.questionList.length === 0) {
         this.showNoQuestionsAlert();
@@ -28,11 +28,13 @@ export class Test4Component {
     });
   }
 
+  
   startQuiz(){
-    if (this.nameForm.valid && this.questionList.length > 0) {
-      localStorage.setItem("name", this.nameKey.nativeElement.value);
-      this.router.navigate(['principal/seleccionar/test4/examen4']);
+    if (this.nameForm.valid) {
+      localStorage.setItem("name",this.nameKey.nativeElement.value);
+      this.router.navigate(['principal/seleccionar/test3/examen3']);
     }
+    //localStorage.setItem("name",this.nameKey.nativeElement.value);
   }
 
   showNoQuestionsAlert() {
@@ -47,4 +49,5 @@ export class Test4Component {
       }
     });
   }
+
 }

@@ -17,31 +17,37 @@ import Swal from 'sweetalert2';
 })
 export class AdminComponent {
 
-  items$: Observable<Pregunta[]>;
+  items$4: Observable<Pregunta[]>;
+  items$3: Observable<Pregunta[]>;
+
   selectedFile4c: File | null = null;
   subiendo4c: number | null = null;
   urlActual4c: string = "";
 
   selectedFile3c: File | null = null;
   subiendo3c: number | null = null;
+  urlActual3c: string = "";
 
   constructor(private modalService: NgbModal,private service: PreguntasService, private storage: FirebaseStorageService) {
-    this.items$ = service.getQuestionFire();
-    console.log(this.items$);
+    this.items$4 = service.getQuestionFire4c();
+    this.items$3 = service.getQuestionFire3c();
+    console.log(this.items$4);
     this.descargarM4CPDF();
+    this.descargarM3CPDF();
   }
 
-	open() {
+	open(tipo: number) {
 		const modalRef = this.modalService.open(ModalAddPComponent);
-		//modalRef.componentInstance.name = 'World';
+		modalRef.componentInstance.tipo = tipo;
 	}
 
-  editar(item: any) {
+
+  editar(item: any, tipo: number) {
     console.log(item)
 		const modalRef = this.modalService.open(ModalEditPComponent);
 		modalRef.componentInstance.pregunta = item;
+    modalRef.componentInstance.tipo = tipo;
 	}
-
 
 //SUBIR ARCHIVOS
 onFileSelected4c(event: any) {
@@ -76,9 +82,91 @@ descargarM4CPDF(){
     console.log(response);
   }).catch(
     error => {
-      Swal.fire('Error al caargar los archivos', '', 'error');
+     // Swal.fire('Error al cargar los archivos', '', 'error');
     }
   );
 }
+
+onUpload3C() {
+  if (this.selectedFile3c) {
+    this.subiendo3c=1;
+    this.storage.upload3cPDF(this.selectedFile3c)
+    .then(response => {
+      this.subiendo3c = null;
+      this.selectedFile3c = null;
+      Swal.fire('Subido con exito', '', 'success');
+    }).catch(
+      error => {
+        Swal.fire('Error al subir', '', 'error');
+      }
+    );
+  }
+}
+
+
+onDelete3C() {
+  Swal.fire({
+    title: '¿Estás seguro de eliminar el manual de Tercera Categoria?',
+    text: '¡No podrás revertir esto!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, eliminarlo',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.storage.delete3cPDF()
+        .then(response => {
+          this.subiendo3c = null;
+          this.selectedFile3c = null;
+          Swal.fire('Eliminado con éxito', '', 'success');
+        }).catch(
+          error => {
+            Swal.fire('Error al eliminar', '', 'error');
+          }
+        );
+    }
+  });
+}
+
+onDelete4C() {
+  Swal.fire({
+    title: '¿Estás seguro de eliminar el manual de Cuarta Categoria?',
+    text: '¡No podrás revertir esto!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, eliminarlo',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.storage.delete3cPDF()
+        .then(response => {
+          this.subiendo3c = null;
+          this.selectedFile3c = null;
+          Swal.fire('Eliminado con éxito', '', 'success');
+        }).catch(
+          error => {
+            Swal.fire('Error al eliminar', '', 'error');
+          }
+        );
+    }
+  });
+}
+
+descargarM3CPDF(){
+  this.storage.get3cPDFDownloadURL().then(response => {
+    //Swal.fire('Agregado con exito', '', 'success');
+    this.urlActual3c =response+"";
+    console.log(response);
+  }).catch(
+    error => {
+      //Swal.fire('Error al cargar los archivos', '', 'error');
+    }
+  );
+}
+
 
 }

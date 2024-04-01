@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 export class ModalEditPComponent {
 
   @Input() pregunta:any;
+  @Input() tipo!: number;
 
   Form = this.fb.group({
     questionText: ['', [Validators.required]],
@@ -63,14 +64,27 @@ export class ModalEditPComponent {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.service.updateQuestion(this.procesarFormulario())
-        .then(response => {
-          Swal.fire('Actualizado con exito', '', 'success');
-        }).catch(
-          error => {
-            Swal.fire('Error al actualizar', 'Intente de nuevo', 'error');
-          }
-        );
+        if(this.tipo == 4){
+          this.service.updateQuestion4c(this.procesarFormulario())
+          .then(response => {
+            Swal.fire('Actualizado con exito', '', 'success');
+          }).catch(
+            error => {
+              Swal.fire('Error al actualizar', 'Intente de nuevo', 'error');
+            }
+          );
+        }else{
+          this.service.updateQuestion3c(this.procesarFormulario())
+          .then(response => {
+            Swal.fire('Actualizado con exito', '', 'success');
+          }).catch(
+            error => {
+              Swal.fire('Error al actualizar', 'Intente de nuevo', 'error');
+            }
+          );
+        }
+
+
       this.activeModal.close();
       } 
     });
@@ -110,7 +124,8 @@ export class ModalEditPComponent {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.service.deleteQuestion(this.pregunta)
+        if(this.tipo == 4){
+        this.service.deleteQuestion4c(this.pregunta)
         .then(response => {
           Swal.fire('Eliminado con exito', '', 'success');
         }).catch(
@@ -118,6 +133,17 @@ export class ModalEditPComponent {
             Swal.fire('Error al eliminar', '', 'error');
           }
         );
+        }else{
+            this.service.deleteQuestion3c(this.pregunta)
+            .then(response => {
+              Swal.fire('Eliminado con exito', '', 'success');
+            }).catch(
+              error => {
+                Swal.fire('Error al eliminar', '', 'error');
+              }
+            );
+        }
+
       this.activeModal.close();
       } 
     });

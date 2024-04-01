@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { interval } from 'rxjs';
 import { PreguntasService } from 'src/app/shared/Services/preguntas.service';
 import { Router } from '@angular/router';
-
 @Component({
-  selector: 'app-preguntast4',
-  templateUrl: './preguntast4.component.html',
-  styleUrls: ['./preguntast4.component.scss']
+  selector: 'app-preguntast3',
+  templateUrl: './preguntast3.component.html',
+  styleUrls: ['./preguntast3.component.scss']
 })
-export class Preguntast4Component {
+export class Preguntast3Component {
   public name: string = "";
   public questionList: any[] = [];
   public currentQuestion: number = 0;
@@ -30,7 +29,7 @@ export class Preguntast4Component {
   }
   getAllQuestions() {
     //this.questionService.getQuestionJson().subscribe(res => {this.questionList = res.questions;});
-    this.questionService.getQuestionFire4c().subscribe(res => {this.questionList = res})
+    this.questionService.getQuestionFire3c().subscribe(res => {this.questionList = res})
     
   }
   nextQuestion() {

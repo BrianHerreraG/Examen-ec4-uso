@@ -9,15 +9,28 @@ import Swal from 'sweetalert2';
 export class DescargasComponent {
 
   urlM4C:string="";
+  urlM3C:string="";
 
   constructor(private storage: FirebaseStorageService){
     this.descargarM4CPDF();
+    this.descargarM3CPDF();
   }
 
   descargarM4CPDF(){
     this.storage.get4cPDFDownloadURL().then(response => {
       //Swal.fire('Agregado con exito', '', 'success');
       this.urlM4C =response+"";
+      console.log(response);
+    }).catch(
+      error => {
+        Swal.fire('Error al caargar los archivos', '', 'error');
+      }
+    );
+  }
+  descargarM3CPDF(){
+    this.storage.get3cPDFDownloadURL().then(response => {
+      //Swal.fire('Agregado con exito', '', 'success');
+      this.urlM3C =response+"";
       console.log(response);
     }).catch(
       error => {

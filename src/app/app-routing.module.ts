@@ -10,17 +10,23 @@ import { AuthGuard } from './auth.guard';
 import { DescargasComponent } from './public/descargas/descargas.component';
 import { IndicacionesComponent } from './public/indicaciones/indicaciones.component';
 import { AcercadeComponent } from './public/acercade/acercade.component';
+import { SelectTipoComponent } from './public/select-tipo/select-tipo.component';
+import { Test3Component } from './public/test3/test3.component';
+import { Preguntast3Component } from './public/preguntast3/preguntast3.component';
 
 const routes: Routes = [
   { path: 'principal', component: PrincipalComponent },
   { path: 'lista', component: ListaPreguntasComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent,canActivate: [AuthGuard] },
-  { path: 'principal/test4', component: Test4Component },
+  { path: 'principal/seleccionar/test4', component: Test4Component },
+  { path: 'principal/seleccionar/test3', component: Test3Component },
+  { path: 'principal/seleccionar', component: SelectTipoComponent },
   { path: 'principal/descargas', component: DescargasComponent },
   { path: 'principal/indicaciones', component: IndicacionesComponent },
   { path: 'principal/acercade', component: AcercadeComponent },
-  { path: 'principal/test4/examen4', component: Preguntast4Component },
+  { path: 'principal/seleccionar/test4/examen4', component: Preguntast4Component },
+  { path: 'principal/seleccionar/test3/examen3', component: Preguntast3Component },
   { path: '', redirectTo: '/principal', pathMatch: 'full' }, // Ruta predeterminada
 ];
 

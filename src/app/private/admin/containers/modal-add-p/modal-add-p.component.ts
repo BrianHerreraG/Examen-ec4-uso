@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { PreguntasService } from 'src/app/shared/Services/preguntas.service';
@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-add-p.component.scss']
 })
 export class ModalAddPComponent {
+
+  @Input() tipo!: number;
 
   Form = this.fb.group({
     questionText: ['', [Validators.required]],
@@ -26,14 +28,29 @@ export class ModalAddPComponent {
   constructor(private fb: FormBuilder, public activeModal: NgbActiveModal,private service: PreguntasService) {}
 
   guardar(){
-    this.service.addQuestion(this.procesarFormulario())
-    .then(response => {
-      Swal.fire('Agregado con exito', '', 'success');
-    }).catch(
-      error => {
-        Swal.fire('Error al agregar', '', 'error');
-      }
-    );
+
+    if(this.tipo == 4){
+      this.service.addQuestion4c(this.procesarFormulario())
+      .then(response => {
+        Swal.fire('Agregado con exito', '', 'success');
+      }).catch(
+        error => {
+          Swal.fire('Error al agregar', '', 'error');
+        }
+      );
+    }else{
+      this.service.addQuestion3c(this.procesarFormulario())
+      .then(response => {
+        Swal.fire('Agregado con exito', '', 'success');
+      }).catch(
+        error => {
+          Swal.fire('Error al agregar', '', 'error');
+        }
+      );
+    }
+
+
+
       this.activeModal.close();
   }
 

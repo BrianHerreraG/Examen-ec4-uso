@@ -19,6 +19,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { Test4Component } from './public/test4/test4.component';
 import { PrincipalComponent } from './public/principal/principal.component';
@@ -40,6 +41,9 @@ import { DescargasComponent } from './public/descargas/descargas.component';
 import { IndicacionesComponent } from './public/indicaciones/indicaciones.component';
 import { AcercadeComponent } from './public/acercade/acercade.component';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { SelectTipoComponent } from './public/select-tipo/select-tipo.component';
+import { Test3Component } from './public/test3/test3.component';
+import { Preguntast3Component } from './public/preguntast3/preguntast3.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +56,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     LoginComponent,
     AdminComponent,
     ModalAddPComponent, 
-    ModalAddPComponent, ModalEditPComponent, DescargasComponent, IndicacionesComponent, AcercadeComponent
+    ModalAddPComponent, ModalEditPComponent, DescargasComponent, IndicacionesComponent, AcercadeComponent, SelectTipoComponent, Test3Component, Preguntast3Component
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     NgbModule,
     NgbDropdownModule,
     MatButtonModule, MatMenuModule, MatInputModule,MatFormFieldModule,
-    MatCardModule, MatSelectModule, MatRadioModule, MatProgressBarModule,
+    MatCardModule, MatSelectModule, MatRadioModule, MatProgressBarModule, MatTabsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)), 
     provideFirestore(() => getFirestore()),
     provideAuth(()=> getAuth()),

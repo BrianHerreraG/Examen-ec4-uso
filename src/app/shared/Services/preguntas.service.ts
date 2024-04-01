@@ -15,23 +15,43 @@ export class PreguntasService {
     return this.http.get<any>("assets/questions.json");
   }
 
-  getQuestionFire(){
+  getQuestionFire4c(){
     const aCollection = collection(this.firestore, 'preguntas4c');
     return collectionData(aCollection,  { idField: 'id' }) as Observable<Pregunta[]>;
   }
 
-  addQuestion(pregunta: any){
+  getQuestionFire3c(){
+    const aCollection = collection(this.firestore, 'preguntas3c');
+    return collectionData(aCollection,  { idField: 'id' }) as Observable<Pregunta[]>;
+  }
+
+  addQuestion4c(pregunta: any){
     const aDoc = collection(this.firestore, 'preguntas4c')
     return addDoc(aDoc,pregunta);
   }
 
-  deleteQuestion(pregunta: Pregunta){
+  addQuestion3c(pregunta: any){
+    const aDoc = collection(this.firestore, 'preguntas3c')
+    return addDoc(aDoc,pregunta);
+  }
+
+  deleteQuestion4c(pregunta: Pregunta){
     const dDoc = doc(this.firestore, 'preguntas4c/'+pregunta.id);
     return deleteDoc(dDoc);
   }
 
-  updateQuestion(pregunta: any) {
+  deleteQuestion3c(pregunta: Pregunta){
+    const dDoc = doc(this.firestore, 'preguntas3c/'+pregunta.id);
+    return deleteDoc(dDoc);
+  }
+
+  updateQuestion4c(pregunta: any) {
     const dDoc = doc(this.firestore, 'preguntas4c/' + pregunta.id);
+    return updateDoc(dDoc, pregunta);
+  }
+
+  updateQuestion3c(pregunta: any) {
+    const dDoc = doc(this.firestore, 'preguntas3c/' + pregunta.id);
     return updateDoc(dDoc, pregunta);
   }
 
