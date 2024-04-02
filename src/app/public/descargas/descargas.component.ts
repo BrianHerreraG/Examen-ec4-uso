@@ -23,7 +23,7 @@ export class DescargasComponent {
       console.log(response);
     }).catch(
       error => {
-        Swal.fire('Error al caargar los archivos', '', 'error');
+        Swal.fire('Error al cargar uno de los archivos', '', 'info');
       }
     );
   }
@@ -34,7 +34,7 @@ export class DescargasComponent {
       console.log(response);
     }).catch(
       error => {
-        Swal.fire('Error al caargar los archivos', '', 'error');
+        Swal.fire('Error al cargar uno de los archivos', '', 'info');
       }
     );
   }

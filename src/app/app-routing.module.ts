@@ -13,6 +13,7 @@ import { AcercadeComponent } from './public/acercade/acercade.component';
 import { SelectTipoComponent } from './public/select-tipo/select-tipo.component';
 import { Test3Component } from './public/test3/test3.component';
 import { Preguntast3Component } from './public/preguntast3/preguntast3.component';
+import { ContenidoComponent } from './public/contenido/contenido.component';
 
 const routes: Routes = [
   { path: 'principal', component: PrincipalComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'principal/seleccionar', component: SelectTipoComponent },
   { path: 'principal/descargas', component: DescargasComponent },
   { path: 'principal/indicaciones', component: IndicacionesComponent },
+  { path: 'principal/contenido', component: ContenidoComponent },
   { path: 'principal/acercade', component: AcercadeComponent },
   { path: 'principal/seleccionar/test4/examen4', component: Preguntast4Component },
   { path: 'principal/seleccionar/test3/examen3', component: Preguntast3Component },

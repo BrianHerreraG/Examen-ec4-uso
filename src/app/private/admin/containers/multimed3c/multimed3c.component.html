@@ -1,0 +1,37 @@
+
+<div class="m-0 mt-2">
+    <h2>Contenido  - Tercera Categoria</h2>
+    <mat-card-actions class="row justify-content-end p-2">
+      <button mat-button class="col-8 col-md-5" style="background-color: #159a9c; color: whitesmoke" (click)="open(3)">
+        Agregar contenido
+      </button>
+    </mat-card-actions>
+    <div class="d-flex flex-column vh-100" *ngIf="multi3 | async as items">
+      <div class="table-container col-12">
+        <table class="table col-12">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of multi3 | async; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>
+                <strong>{{ item.multiText }}</strong> <br>
+                <a href="{{ item.url }}" target="_blank">{{ item.url }}</a>
+              </td>
+              <td>
+                <button mat-button (click)="editar(item,3)" class="p-1" style="background-color: #002333; color: whitesmoke">
+                  Editar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          
+        </table>
+      </div>
+    </div>
+  </div>

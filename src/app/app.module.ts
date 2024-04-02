@@ -44,6 +44,13 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { SelectTipoComponent } from './public/select-tipo/select-tipo.component';
 import { Test3Component } from './public/test3/test3.component';
 import { Preguntast3Component } from './public/preguntast3/preguntast3.component';
+import { Mant4cComponent } from './private/admin/containers/mant4c/mant4c.component';
+import { Mant3cComponent } from './private/admin/containers/mant3c/mant3c.component';
+import { Multimed4cComponent } from './private/admin/containers/multimed4c/multimed4c.component';
+import { ModalAddMulComponent } from './private/admin/containers/modal-add-mul/modal-add-mul.component';
+import { ModalEditMulComponent } from './private/admin/containers/modal-edit-mul/modal-edit-mul.component';
+import { Multimed3cComponent } from './private/admin/containers/multimed3c/multimed3c.component';
+import { ContenidoComponent } from './public/contenido/contenido.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +63,9 @@ import { Preguntast3Component } from './public/preguntast3/preguntast3.component
     LoginComponent,
     AdminComponent,
     ModalAddPComponent, 
-    ModalAddPComponent, ModalEditPComponent, DescargasComponent, IndicacionesComponent, AcercadeComponent, SelectTipoComponent, Test3Component, Preguntast3Component
+    ModalAddPComponent, ModalEditPComponent, DescargasComponent, 
+    IndicacionesComponent, AcercadeComponent, SelectTipoComponent, Test3Component, Preguntast3Component, 
+    Mant4cComponent, Mant3cComponent, Multimed4cComponent, ModalAddMulComponent, ModalEditMulComponent, Multimed3cComponent, ContenidoComponent
   ],
   imports: [
     BrowserModule,

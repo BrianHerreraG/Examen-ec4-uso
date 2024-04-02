@@ -1,36 +1,30 @@
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalAddPComponent } from './containers/modal-add-p/modal-add-p.component';
+
 import { Observable } from 'rxjs';
 import { PreguntasService } from 'src/app/shared/Services/preguntas.service';
-import { ModalEditPComponent } from './containers/modal-edit-p/modal-edit-p.component';
+
 import Pregunta from 'src/app/shared/interfaces/pregunta.interface';
 import { FirebaseStorageService } from 'src/app/shared/Services/firebasestorage.service';
 import Swal from 'sweetalert2';
+import { ModalAddPComponent } from '../modal-add-p/modal-add-p.component';
+import { ModalEditPComponent } from '../modal-edit-p/modal-edit-p.component';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  selector: 'app-mant3c',
+  templateUrl: './mant3c.component.html',
+  styleUrls: ['./mant3c.component.scss']
 })
-export class AdminComponent {
+export class Mant3cComponent {
 
-  items$4: Observable<Pregunta[]>;
   items$3: Observable<Pregunta[]>;
-
-  selectedFile4c: File | null = null;
-  subiendo4c: number | null = null;
-  urlActual4c: string = "";
 
   selectedFile3c: File | null = null;
   subiendo3c: number | null = null;
   urlActual3c: string = "";
 
   constructor(private modalService: NgbModal,private service: PreguntasService, private storage: FirebaseStorageService) {
-    this.items$4 = service.getQuestionFire4c();
     this.items$3 = service.getQuestionFire3c();
-    console.log(this.items$4);
-    this.descargarM4CPDF();
     this.descargarM3CPDF();
   }
 
@@ -48,42 +42,11 @@ export class AdminComponent {
 	}
 
 //SUBIR ARCHIVOS
-onFileSelected4c(event: any) {
-  this.selectedFile4c = event.target.files[0];
-}
-
 onFileSelected3c(event: any) {
   this.selectedFile3c = event.target.files[0];
 }
 
 
-onUpload4C() {
-  if (this.selectedFile4c) {
-    this.subiendo4c=1;
-    this.storage.upload4cPDF(this.selectedFile4c)
-    .then(response => {
-      this.subiendo4c = null;
-      this.selectedFile4c = null;
-      Swal.fire('Subido con exito', '', 'success');
-    }).catch(
-      error => {
-        Swal.fire('Error al subir', '', 'error');
-      }
-    );
-  }
-}
-
-descargarM4CPDF(){
-  this.storage.get4cPDFDownloadURL().then(response => {
-    //Swal.fire('Agregado con exito', '', 'success');
-    this.urlActual4c =response+"";
-    console.log(response);
-  }).catch(
-    error => {
-     // Swal.fire('Error al cargar los archivos', '', 'error');
-    }
-  );
-}
 
 onUpload3C() {
   if (this.selectedFile3c) {
@@ -140,6 +103,4 @@ descargarM3CPDF(){
     }
   );
 }
-
-
 }

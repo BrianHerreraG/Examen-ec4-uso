@@ -1,0 +1,39 @@
+<div class="content" role="main">
+
+    <div class="container col-12 bg-light py-5 rounded-3">
+        <h1 class="display-5 fw-bold text-center">Contenido Multimedia</h1>
+            <mat-tab-group>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="m-1" style="height: 2rem; width: 2rem; font-size: 2rem">looks_4</mat-icon>
+                  Cuarta Categoria
+                </ng-template>
+                <mat-card class="example-card p-2 mb-2" *ngFor="let item of videos4 | async; let i = index">
+                    <mat-card-header>
+                      <mat-card-title class="m-0 justify-content-center">{{item.multiText}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="col-12">
+                      <!-- Insertar el reproductor de video de YouTube -->
+                      <iframe width="100%" height="315" [src]="createYoutubeUrl(item.url)" frameborder="0" allowfullscreen></iframe>
+                    </mat-card-content>
+                  </mat-card>                  
+              </mat-tab>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="m-1" style="height: 2rem; width: 2rem; font-size: 2rem">looks_3</mat-icon>
+                  Tercera Categoria
+                </ng-template>
+                <mat-card class="example-card p-2 mb-2" *ngFor="let item of videos3 | async; let i = index">
+                    <mat-card-header>
+                      <mat-card-title class="m-0 justify-content-center">{{item.multiText}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="col-12">
+                      <!-- Insertar el reproductor de video de YouTube -->
+                      <iframe width="100%" height="315" [src]="createYoutubeUrl(item.url)" frameborder="0" allowfullscreen></iframe>
+                    </mat-card-content>
+                  </mat-card> 
+              </mat-tab>
+            </mat-tab-group>
+
+    </div>
+</div>
