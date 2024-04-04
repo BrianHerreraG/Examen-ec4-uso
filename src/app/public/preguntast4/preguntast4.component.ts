@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { interval } from 'rxjs';
 import { PreguntasService } from 'src/app/shared/Services/preguntas.service';
 import { Router } from '@angular/router';
+import { shuffle } from 'lodash';
 
 @Component({
   selector: 'app-preguntast4',
@@ -28,11 +29,18 @@ export class Preguntast4Component {
     this.getAllQuestions();
     this.startCounter();
   }
+
   getAllQuestions() {
-    //this.questionService.getQuestionJson().subscribe(res => {this.questionList = res.questions;});
-    this.questionService.getQuestionFire4c().subscribe(res => {this.questionList = res})
-    
+    this.questionService.getQuestionFire4c().subscribe(res => {
+      // Paso 1: Aleatorizar el orden de las preguntas
+      this.questionList = shuffle(res).slice(0, 20); // Paso 2: Limitar a 20 preguntas
+      // Paso 3: Aleatorizar el orden de las respuestas para cada pregunta
+      this.questionList.forEach(question => {
+        question.options = shuffle(question.options);
+      });
+    });
   }
+
   nextQuestion() {
     this.currentQuestion++;
   }
@@ -77,9 +85,7 @@ export class Preguntast4Component {
     }
 
   }
-
   startCounter() {
-    
     this.interval$ = interval(1000)
       .subscribe(val => {
         this.counter--;
@@ -100,7 +106,6 @@ export class Preguntast4Component {
     }, 600000);
 
   }
-
   stopCounter() {
     this.interval$.unsubscribe();
     this.counter = 0;
